@@ -1,0 +1,5 @@
+MATCH (r1:Resort)
+MATCH (r2:Resort)
+WHERE point.distance(r1.location, r2.location) <= 30000 AND elementId(r1) < elementId(r2)
+MERGE (r1)-[rel:NEAR_TO]-(r2)
+SET rel.distanceKm = round(point.distance(r1.location, r2.location) / 1000, 2)

@@ -1,0 +1,1 @@
+CALL apoc.export.cypher.all("full_export.cypher")

@@ -1,0 +1,8 @@
+WITH point({latitude: 49.1164, longitude: 20.2833}) AS center, 100000 AS radius
+MATCH (r:Resort)
+WHERE point.distance(r.location, center) <= radius AND r.skipass_price > 0
+RETURN 
+    count(r) AS NumberOfResorts,
+    round(avg(r.highest_point), 3) AS AverageHighestPoint,
+    min(r.highest_point) AS MinHighestPoint,
+    max(r.highest_point) AS MaxHighestPoint;
